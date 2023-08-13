@@ -31,7 +31,6 @@ class dataPrep(Dataset):
             image = self.input_transform(image)
 
         if self.mask_transform is not None:
-            # apply the transformations to both image and its mask
             mask = self.mask_transform(mask)
         # return a tuple of the image and its mask
         mask,_ =torch.max(mask,dim=0)
