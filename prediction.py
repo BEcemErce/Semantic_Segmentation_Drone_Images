@@ -66,13 +66,12 @@ def make_predictions(model, imagePath, masked_path,input_transform):
 		#print(np.unique(predMask))
 
 		N,_, h, w = predMask.shape
-		pred = predMask.transpose(0, 2, 3, 1).reshape(-1, 24).argmax(axis=1).reshape(N, h, w) #(1, 192, 256)
+		pred = predMask.transpose(0, 2, 3, 1).reshape(-1, 24).argmax(axis=1)
+		#.reshape(N, h, w) #(1, 192, 256)
 		pred=torch.from_numpy(pred)
-		print(pred) 
+		print(pred.shape) 
 		#pred = np.transpose(pred, (1,2,0)) # (192, 256,1)
 		
-		
-		print(np.unique(pred))
 		
 		
 

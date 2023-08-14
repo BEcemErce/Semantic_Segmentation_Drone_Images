@@ -30,14 +30,16 @@ class dataPrep(Dataset):
             # apply the transformations to both image and its mask
             image = self.input_transform(image)
 
+
         if self.mask_transform is not None:
             mask = self.mask_transform(mask)
         # return a tuple of the image and its mask
         mask,_ =torch.max(mask,dim=0)
+       
         h, w = mask.size()
         target = torch.zeros(self.n_class, h, w)
         for c in range(self.n_class):
-            target[c][mask == c] = 1
+           target[c][mask == c] = 1
         
 
-        return (image, target)
+        return (image, target, mask)
