@@ -25,27 +25,27 @@ class FCN(nn.Module):
         self.pool3 = nn.MaxPool2d(2, 2)
     
 
-        self.conv8 = nn.Conv2d(256, 512, kernel_size=3, padding=1)
-        self.conv9 = nn.Conv2d(512, 512, kernel_size=3, padding=1)
-        self.conv10 = nn.Conv2d(512, 512, kernel_size=3, padding=1)
-        self.pool4 = nn.MaxPool2d(2, 2)
+        #self.conv8 = nn.Conv2d(256, 512, kernel_size=3, padding=1)
+        #self.conv9 = nn.Conv2d(512, 512, kernel_size=3, padding=1)
+        #self.conv10 = nn.Conv2d(512, 512, kernel_size=3, padding=1)
+        #self.pool4 = nn.MaxPool2d(2, 2)
 
-        self.conv11 = nn.Conv2d(512, 512, kernel_size=3, padding=1)
-        self.conv12 = nn.Conv2d(512, 512, kernel_size=3, padding=1)
-        self.conv13 = nn.Conv2d(512, 512, kernel_size=3, padding=1)
-        self.pool5 = nn.MaxPool2d(2, 2)
+        #self.conv11 = nn.Conv2d(512, 512, kernel_size=3, padding=1)
+        #self.conv12 = nn.Conv2d(512, 512, kernel_size=3, padding=1)
+        #self.conv13 = nn.Conv2d(512, 512, kernel_size=3, padding=1)
+        #self.pool5 = nn.MaxPool2d(2, 2)
 
 
         ### DECODER ###
 
         
-        self.deconv1 = nn.ConvTranspose2d(512, 512, kernel_size=3, stride=2, padding=1, dilation=1, output_padding=1)
-        self.bn1     = nn.BatchNorm2d(512)
-        self.deconv2 = nn.ConvTranspose2d(512, 256, kernel_size=3, stride=2, padding=1, dilation=1, output_padding=1)
-        self.bn2     = nn.BatchNorm2d(256)
+        #self.deconv1 = nn.ConvTranspose2d(512, 512, kernel_size=3, stride=2, padding=1, dilation=1, output_padding=1)
+        #self.bn1     = nn.BatchNorm2d(512)
+        #self.deconv2 = nn.ConvTranspose2d(512, 256, kernel_size=3, stride=2, padding=1, dilation=1, output_padding=1)
+        #self.bn2     = nn.BatchNorm2d(256)
 
-        # self.deconv1 = nn.ConvTranspose2d(256, 256, kernel_size=3, stride=2, padding=1, dilation=1, output_padding=1)
-        # self.bn1     = nn.BatchNorm2d(256)
+        #self.deconv1 = nn.ConvTranspose2d(256, 256, kernel_size=3, stride=2, padding=1, dilation=1, output_padding=1)
+        #self.bn1     = nn.BatchNorm2d(256)
 
         self.deconv3 = nn.ConvTranspose2d(256, 128, kernel_size=3, stride=2, padding=1, dilation=1, output_padding=1)
         self.bn3     = nn.BatchNorm2d(128)
@@ -78,23 +78,23 @@ class FCN(nn.Module):
         x = F.relu(self.conv7(x))
         x = self.pool3(x)
 
-        x = F.relu(self.conv8(x))
-        x = F.relu(self.conv9(x))
-        x = F.relu(self.conv10(x))
-        pool4_out = self.pool4(x)
+       # x = F.relu(self.conv8(x))
+        #x = F.relu(self.conv9(x))
+        #x = F.relu(self.conv10(x))
+        #x = self.pool4(x)
 
-        x = F.relu(self.conv11(pool4_out))
-        x = F.relu(self.conv12(x))
-        x = F.relu(self.conv13(x))
-        pool5_out = self.pool5(x)
+        #x = F.relu(self.conv11(x))
+        #x = F.relu(self.conv12(x))
+        #x = F.relu(self.conv13(x))
+        #pool5_out = self.pool5(x)
 
 
         # print("pool3",x.shape)
-        score = self.bn1(F.relu(self.deconv1(pool5_out)))     
-        score = self.bn2(F.relu(self.deconv2(score)))  
+        #score = self.bn1(F.relu(self.deconv1(x)))     
+        #score = self.bn2(F.relu(self.deconv2(score)))  
         # print("deconv1",score.shape)
 
-        score = self.bn3(F.relu(self.deconv3(score)))
+        score = self.bn3(F.relu(self.deconv3(x)))
         # print("deconv3",score.shape)
         score = self.bn4(F.relu(self.deconv4(score)))  
         # print("deconv4",score.shape)
