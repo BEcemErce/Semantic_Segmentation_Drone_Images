@@ -48,57 +48,46 @@ class Encoder(torch.nn.Module):
     
     def forward(self, x):
         ftrs = []
-        
         x = self.conv1(x)
-        x=self.bn1(x)
         x = torch.nn.functional .relu(x)
         x =self.dropout1(x)
         x = self.conv2(x)
-        x=self.bn1(x)
         x = torch.nn.functional .relu(x)
         ftrs.append(x)
         x = self.pool(x)
         
         
         x = self.conv3(x)
-        x=self.bn2(x)
         x = torch.nn.functional .relu(x)
         x =self.dropout1(x)
         x = self.conv4(x)
-        x=self.bn2(x)
         x = torch.nn.functional .relu(x)
         ftrs.append(x)
         x = self.pool(x)
         
         
         x = self.conv5(x)
-        x=self.bn3(x)
         x = torch.nn.functional .relu(x)
         x =self.dropout1(x)
         x = self.conv6(x)
-        x=self.bn3(x)
         x = torch.nn.functional .relu(x)
         ftrs.append(x)
         x = self.pool(x)
         
 
         x = self.conv7(x)
-        x=self.bn4(x)
         x = torch.nn.functional .relu(x)
         x =self.dropout1(x)
         x = self.conv8(x)
-        x=self.bn4(x)
         x = torch.nn.functional .relu(x)
         ftrs.append(x)
         x = self.pool(x)
         
 
         x = self.conv9(x)
-        x=self.bn5(x)
         x = torch.nn.functional .relu(x)
         x =self.dropout3(x)
         x = self.conv10(x)
-        x=self.bn5(x)
         x = torch.nn.functional .relu(x)
         ftrs.append(x)
         #x = self.pool(x)
@@ -144,7 +133,6 @@ class Decoder(torch.nn.Module):
         
 
         x = self.convTr1(x)
-        x= self.bn1(x)
         #enc_ftrs = self.crop(encoder_features[0], x)  
         x        = torch.cat([x, encoder_features[0]], dim=1)
         x        = self.conv1(x)
@@ -155,7 +143,6 @@ class Decoder(torch.nn.Module):
 
 
         x = self.convTr2(x)
-        x= self.bn2(x)
         #enc_ftrs = self.crop(encoder_features[1], x)  
         x        = torch.cat([x, encoder_features[1]], dim=1)
         x        = self.conv2(x)
@@ -166,7 +153,6 @@ class Decoder(torch.nn.Module):
 
 
         x = self.convTr3(x)
-        x= self.bn3(x)
         #enc_ftrs = self.crop(encoder_features[2], x)  
         x        = torch.cat([x, encoder_features[2]], dim=1)
         x        = self.conv3(x)
@@ -177,7 +163,6 @@ class Decoder(torch.nn.Module):
 
 
         x = self.convTr4(x)
-        x= self.bn4(x)
         x        = torch.cat([x, encoder_features[3]], dim=1)
         x        = self.conv4(x)
         x = torch.nn.functional .relu(x)

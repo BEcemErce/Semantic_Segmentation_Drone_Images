@@ -22,9 +22,11 @@ class dataPrep(Dataset):
         maskPath = self.maskPaths[idx]
 		# load the image from disk, swap its channels from BGR to RGB,
 		# and read the associated mask from disk in grayscale mode
-        image = cv2.imread(imagePath)
-        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-        mask = cv2.imread(maskPath)
+        image = cv2.imread(imagePath, cv2.IMREAD_COLOR)
+        image=image//255
+        #image = image.astype(np.float32)
+        #image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        mask = cv2.imread(maskPath,cv2.IMREAD_GRAYSCALE)
         # check to see if we are applying any transformations
         if self.input_transform is not None:
             # apply the transformations to both image and its mask
@@ -42,4 +44,4 @@ class dataPrep(Dataset):
            target[c][mask == c] = 1
         
 
-        return (image, target, mask)
+        return (image, target,mask)
