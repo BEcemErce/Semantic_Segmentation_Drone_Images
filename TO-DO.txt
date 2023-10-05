@@ -1,6 +1,0 @@
-# TO-DO #
-
-# data loader X
-# model modules (pretrained + FCN)
-# training module (early stopping + fine tuning )
-# testing module 
