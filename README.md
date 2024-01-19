@@ -1,7 +1,7 @@
 # Semantic_Segmentation_Drone_Images
 
 ## Overview
-This project aims to segment the classes semantically by using U-Net.
+This project aims to segment the objects semantically.
 
 Data: https://www.kaggle.com/datasets/bulentsiyah/semantic-drone-dataset
 
