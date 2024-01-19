@@ -5,13 +5,13 @@ This project aims to segment the classes semantically by using U-Net.
 
 Data: https://www.kaggle.com/datasets/bulentsiyah/semantic-drone-dataset
 
-Model: U-Net with original structure (unet_orig.py)
+Model: unet_orig.py (U-Net with original structure)
+
+Training: main.ipynb
 
 ## Results
 
-Train - Test Loss:
-![unet_orig_512_1024_10](https://github.com/BEcemErce/Semantic_Segmentation_Drone_Images/assets/66211576/a49b7752-5d00-4b54-9e38-2324c899f75b)
-
+**Pixel Accuracy:** 0.84
 
 ![unet_orig_512_1024_10_3](https://github.com/BEcemErce/Semantic_Segmentation_Drone_Images/assets/66211576/0daa6cbc-37df-48a1-91d6-3b6e53ddb615)
 ![unet_orig_512_1024_10_2](https://github.com/BEcemErce/Semantic_Segmentation_Drone_Images/assets/66211576/10a658e4-8f56-42da-9546-669220f9cec8)
